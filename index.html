@@ -12,83 +12,133 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;background:#0f2233;}
-.app{font-family:'Barlow',sans-serif;background:#0f2233;min-height:100vh;color:#fff;max-width:520px;margin:0 auto;padding-bottom:80px;}
-.header{background:#0a1a28;padding:env(safe-area-inset-top,14px) 20px 10px;padding-top:calc(env(safe-area-inset-top,0px) + 14px);display:flex;align-items:center;gap:12px;border-bottom:2px solid #e8a020;position:sticky;top:0;z-index:50;}
-.logo-icon{width:38px;height:38px;background:#e8a020;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:#0a1a28;letter-spacing:1px;flex-shrink:0;}
-.header-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;letter-spacing:2px;color:#fff;text-transform:uppercase;}
-.header-sub{font-size:11px;color:#e8a020;text-transform:uppercase;letter-spacing:1.5px;}
-.session-bar{background:#162d42;padding:10px 20px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #1e3d58;flex-wrap:wrap;}
-.session-bar input{background:#0f2233;border:1px solid #2a4a65;color:#fff;border-radius:6px;padding:8px 10px;font-size:14px;font-family:'Barlow',sans-serif;flex:1;min-width:100px;}
+
+.app{font-family:'Barlow',sans-serif;background:#0f2233;min-height:100vh;color:#fff;}
+
+/* HEADER */
+.header{background:#0a1a28;padding:calc(env(safe-area-inset-top,0px) + 14px) 24px 12px;display:flex;align-items:center;gap:14px;border-bottom:2px solid #e8a020;position:sticky;top:0;z-index:50;}
+.logo-icon{width:42px;height:42px;background:#e8a020;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;color:#0a1a28;letter-spacing:1px;flex-shrink:0;}
+.header-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;letter-spacing:2px;color:#fff;text-transform:uppercase;}
+.header-sub{font-size:12px;color:#e8a020;text-transform:uppercase;letter-spacing:1.5px;}
+
+/* SESSION BAR */
+.session-bar{background:#162d42;padding:10px 24px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #1e3d58;flex-wrap:wrap;}
+.session-bar input{background:#0f2233;border:1px solid #2a4a65;color:#fff;border-radius:6px;padding:8px 12px;font-size:14px;font-family:'Barlow',sans-serif;flex:1;min-width:120px;}
 .session-bar input::placeholder{color:#5a7a95;}
-.tab-bar{display:flex;background:#0a1a28;border-bottom:1px solid #1e3d58;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-.tab-bar::-webkit-scrollbar{display:none;}
-.tab-btn{flex:1;min-width:90px;padding:13px 8px;background:none;border:none;color:#5a7a95;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;}
+
+/* TAB BAR */
+.tab-bar{display:flex;background:#0a1a28;border-bottom:1px solid #1e3d58;}
+.tab-btn{flex:1;padding:14px 8px;background:none;border:none;color:#5a7a95;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;}
 .tab-btn.active{color:#e8a020;border-bottom-color:#e8a020;background:#0f2233;}
-.tab-content{display:none;padding:16px;}
+
+/* CONTENT LAYOUT */
+.tab-content{display:none;padding:20px 24px;padding-bottom:40px;}
 .tab-content.active{display:block;}
-.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#e8a020;margin-bottom:10px;margin-top:16px;}
+
+/* iPad: two-column layout for drinks tab */
+@media (min-width:700px){
+  .tab-content{padding:24px 32px 48px;}
+  .drinks-layout{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;align-items:start;}
+  .drinks-col{min-width:0;}
+  .totals-section{grid-column:1/-1;}
+}
+
+/* SECTION TITLE */
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#e8a020;margin-bottom:10px;margin-top:20px;}
 .sec-title:first-child{margin-top:0;}
+
+/* DRINK GRID */
 .drink-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:4px;}
-.drink-btn{background:#162d42;border:1px solid #2a4a65;border-radius:10px;padding:16px 10px;cursor:pointer;text-align:center;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;gap:6px;-webkit-user-select:none;user-select:none;}
+@media (min-width:700px){
+  .drink-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+}
+
+/* DRINK BUTTONS */
+.drink-btn{background:#162d42;border:1px solid #2a4a65;border-radius:12px;padding:18px 10px;cursor:pointer;text-align:center;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;gap:7px;-webkit-user-select:none;user-select:none;width:100%;}
 .drink-btn:active{transform:scale(0.95);background:#1e3d58;border-color:#e8a020;}
-.d-icon{font-size:26px;line-height:1;}
-.d-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;color:#fff;text-transform:uppercase;}
-.d-count{background:#e8a020;color:#0a1a28;border-radius:20px;padding:4px 12px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;min-width:40px;display:inline-block;}
+.d-icon{font-size:28px;line-height:1;}
+.d-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;color:#fff;text-transform:uppercase;}
+.d-count{background:#e8a020;color:#0a1a28;border-radius:20px;padding:4px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;min-width:44px;display:inline-block;}
 .d-sub{font-size:11px;color:#5a7a95;letter-spacing:0.5px;}
 .drink-btn.lit{border-color:#e8a020;background:#1e3d58;}
-.btn-row{display:flex;gap:10px;margin-top:12px;}
-.abtn{flex:1;padding:14px;border-radius:8px;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;transition:all 0.15s;-webkit-user-select:none;user-select:none;}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:10px;margin-top:14px;}
+.abtn{flex:1;padding:15px;border-radius:8px;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;transition:all 0.15s;-webkit-user-select:none;user-select:none;}
 .abtn.pri{background:#e8a020;color:#0a1a28;}
 .abtn.sec{background:#162d42;border:1px solid #2a4a65;color:#fff;}
 .abtn.mail{background:#1a6e3c;color:#fff;border:none;}
-.abtn:active{transform:scale(0.96);}
-.totals-card{background:#162d42;border:1px solid #2a4a65;border-radius:10px;padding:14px 16px;margin-top:12px;}
-.trow{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #1e3d58;font-size:14px;}
+.abtn:active{transform:scale(0.97);}
+
+/* TOTALS */
+.totals-card{background:#162d42;border:1px solid #2a4a65;border-radius:10px;padding:16px 18px;margin-top:14px;}
+@media (min-width:700px){
+  .totals-inner{display:grid;grid-template-columns:repeat(2,1fr);gap:0 24px;}
+}
+.trow{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #1e3d58;font-size:15px;}
 .trow:last-child{border-bottom:none;}
 .trow .lbl{color:#8aafcc;}
-.trow .val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:#fff;}
-.trow.grand .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#e8a020;}
-.trow.grand .val{font-size:22px;color:#e8a020;}
-.toast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);left:50%;transform:translateX(-50%) translateY(80px);background:#e8a020;color:#0a1a28;border-radius:8px;padding:12px 22px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;pointer-events:none;transition:transform 0.3s;z-index:200;white-space:nowrap;}
+.trow .val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;color:#fff;}
+.trow.grand{grid-column:1/-1;}
+.trow.grand .lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:1px;text-transform:uppercase;color:#e8a020;}
+.trow.grand .val{font-size:24px;color:#e8a020;}
+
+/* TOAST */
+.toast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 28px);left:50%;transform:translateX(-50%) translateY(80px);background:#e8a020;color:#0a1a28;border-radius:8px;padding:12px 24px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:1px;pointer-events:none;transition:transform 0.3s;z-index:200;white-space:nowrap;}
 .toast.show{transform:translateX(-50%) translateY(0);}
+
+/* CHECKLIST */
 .check-section{background:#162d42;border:1px solid #2a4a65;border-radius:10px;padding:4px 0;margin-bottom:12px;overflow:hidden;}
-.cs-header{padding:11px 16px;background:#0f2233;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#e8a020;border-bottom:1px solid #2a4a65;display:flex;justify-content:space-between;align-items:center;}
+@media (min-width:700px){
+  .checklist-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .checklist-grid .check-section{margin-bottom:0;}
+}
+.cs-header{padding:12px 18px;background:#0f2233;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#e8a020;border-bottom:1px solid #2a4a65;display:flex;justify-content:space-between;align-items:center;}
 .cs-prog{font-size:12px;font-weight:600;color:#5a7a95;font-family:'Barlow',sans-serif;letter-spacing:0;text-transform:none;}
-.ci{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid #1e3d58;cursor:pointer;-webkit-user-select:none;user-select:none;}
+.ci{display:flex;align-items:center;gap:14px;padding:13px 18px;border-bottom:1px solid #1e3d58;cursor:pointer;-webkit-user-select:none;user-select:none;}
 .ci:last-child{border-bottom:none;}
 .ci:active{background:#1e3d58;}
-.cbox{width:24px;height:24px;border-radius:5px;border:2px solid #2a4a65;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.15s;background:#0f2233;}
+.cbox{width:26px;height:26px;border-radius:6px;border:2px solid #2a4a65;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.15s;background:#0f2233;}
 .cbox.chk{background:#e8a020;border-color:#e8a020;}
-.cbox.chk::after{content:'';width:13px;height:8px;border-left:2.5px solid #0a1a28;border-bottom:2.5px solid #0a1a28;transform:rotate(-45deg) translateY(-2px);display:block;}
+.cbox.chk::after{content:'';width:14px;height:9px;border-left:2.5px solid #0a1a28;border-bottom:2.5px solid #0a1a28;transform:rotate(-45deg) translateY(-2px);display:block;}
 .clbl{font-size:15px;color:#c8dce8;flex:1;}
 .clbl.done{text-decoration:line-through;color:#3a5a75;}
-.mail-info{background:#0f2233;border:1px solid #1e3d58;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:#5a7a95;text-align:center;line-height:1.6;}
+
+/* MAIL INFO */
+.mail-info{background:#0f2233;border:1px solid #1e3d58;border-radius:8px;padding:10px 16px;margin-top:12px;font-size:13px;color:#5a7a95;text-align:center;line-height:1.6;}
 .mail-info span{color:#e8a020;}
 .undo-wrap{display:flex;justify-content:flex-end;margin-top:8px;}
-.undo-btn{background:#0f2233;border:1px solid #2a4a65;border-radius:6px;color:#8aafcc;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:7px 14px;cursor:pointer;}
+.undo-btn{background:#0f2233;border:1px solid #2a4a65;border-radius:6px;color:#8aafcc;font-size:13px;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:7px 16px;cursor:pointer;}
+
 /* AFSPRAKEN */
+.af-layout{display:flex;flex-direction:column;gap:0;}
+@media (min-width:700px){
+  .af-layout{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;align-items:start;}
+  .af-summary-section{grid-column:1/-1;}
+  .af-actions{grid-column:1/-1;}
+}
 .af-card{background:#162d42;border:1px solid #2a4a65;border-radius:10px;overflow:hidden;margin-bottom:12px;}
-.af-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #1e3d58;}
+.af-row{display:flex;align-items:center;gap:14px;padding:15px 18px;border-bottom:1px solid #1e3d58;}
 .af-row:last-child{border-bottom:none;}
 .af-label{flex:1;}
 .af-label strong{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.5px;color:#fff;text-transform:uppercase;}
-.af-label small{font-size:11px;color:#5a7a95;}
-.toggle{width:50px;height:28px;background:#2a4a65;border-radius:14px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;border:none;-webkit-user-select:none;user-select:none;}
+.af-label small{font-size:12px;color:#5a7a95;}
+.toggle{width:52px;height:30px;background:#2a4a65;border-radius:15px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;border:none;-webkit-user-select:none;user-select:none;}
 .toggle.on{background:#e8a020;}
-.toggle::after{content:'';position:absolute;width:22px;height:22px;background:#fff;border-radius:50%;top:3px;left:3px;transition:left .2s;}
+.toggle::after{content:'';position:absolute;width:24px;height:24px;background:#fff;border-radius:50%;top:3px;left:3px;transition:left .2s;}
 .toggle.on::after{left:25px;}
 .stepper{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.step-btn{width:34px;height:34px;background:#0f2233;border:1px solid #2a4a65;border-radius:6px;color:#e8a020;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;-webkit-user-select:none;user-select:none;}
-.step-val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:#fff;min-width:26px;text-align:center;}
-.af-snack-input{width:100%;background:#0f2233;border:1px solid #2a4a65;border-radius:6px;color:#c8dce8;font-family:'Barlow',sans-serif;font-size:14px;padding:9px 10px;margin-top:8px;}
+.step-btn{width:36px;height:36px;background:#0f2233;border:1px solid #2a4a65;border-radius:6px;color:#e8a020;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;-webkit-user-select:none;user-select:none;}
+.step-val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:24px;color:#fff;min-width:28px;text-align:center;}
+.af-snack-input{width:100%;background:#0f2233;border:1px solid #2a4a65;border-radius:6px;color:#c8dce8;font-family:'Barlow',sans-serif;font-size:14px;padding:10px 12px;margin-top:8px;}
 .af-snack-input::placeholder{color:#3a5a75;}
-.af-notitie{width:100%;background:#0f2233;border:1px solid #2a4a65;border-radius:6px;color:#c8dce8;font-family:'Barlow',sans-serif;font-size:14px;padding:9px 10px;resize:none;min-height:80px;}
+.af-notitie{width:100%;background:#0f2233;border:1px solid #2a4a65;border-radius:6px;color:#c8dce8;font-family:'Barlow',sans-serif;font-size:14px;padding:10px 12px;resize:none;min-height:90px;}
 .af-notitie::placeholder{color:#3a5a75;}
-.af-summary{background:#0f2233;border:1px solid #1e3d58;border-radius:10px;padding:14px 16px;margin-bottom:12px;}
-.af-sum-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e3d58;font-size:13px;}
+.af-summary{background:#0f2233;border:1px solid #1e3d58;border-radius:10px;padding:16px 18px;margin-bottom:14px;}
+.af-sum-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1e3d58;font-size:14px;}
 .af-sum-row:last-child{border-bottom:none;}
 .af-sum-lbl{color:#8aafcc;}
-.af-sum-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;}
+.af-sum-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;}
 .af-sum-val.on{color:#e8a020;}
 .af-sum-val.off{color:#3a5a75;}
 </style>
@@ -105,7 +155,7 @@ html,body{height:100%;background:#0f2233;}
 
   <div class="session-bar">
     <input type="text" id="klant" placeholder="Klantnaam / evenement..." autocomplete="off" />
-    <input type="number" id="pers" placeholder="Pers." min="1" style="max-width:74px;" />
+    <input type="number" id="pers" placeholder="Pers." min="1" style="max-width:80px;" />
   </div>
 
   <div class="tab-bar">
@@ -116,159 +166,187 @@ html,body{height:100%;background:#0f2233;}
 
   <!-- DRINKS TAB -->
   <div class="tab-content active" id="tab-drinks">
-    <div class="sec-title">Warme dranken</div>
-    <div class="drink-grid">
-      <button class="drink-btn" onclick="tap('koffie')">
-        <span class="d-icon">☕</span><span class="d-name">Koffie / Thee</span>
-        <span class="d-count" id="cnt-koffie">0</span>
-      </button>
+    <div class="drinks-layout">
+      <!-- Linker kolom op iPad -->
+      <div class="drinks-col">
+        <div class="sec-title">Warme dranken</div>
+        <div class="drink-grid">
+          <button class="drink-btn" onclick="tap('koffie')">
+            <span class="d-icon">☕</span><span class="d-name">Koffie / Thee</span>
+            <span class="d-count" id="cnt-koffie">0</span>
+          </button>
+        </div>
+
+        <div class="sec-title">Fris &amp; Bier</div>
+        <div class="drink-grid">
+          <button class="drink-btn" onclick="tap('fris')">
+            <span class="d-icon">🥤</span><span class="d-name">Frisdrank</span>
+            <span class="d-count" id="cnt-fris">0</span>
+          </button>
+          <button class="drink-btn" onclick="tap('bier')">
+            <span class="d-icon">🍺</span><span class="d-name">Bier</span>
+            <span class="d-count" id="cnt-bier">0</span>
+          </button>
+          <button class="drink-btn" onclick="tap('bier00')">
+            <span class="d-icon">🍺</span><span class="d-name">Bier 0.0</span>
+            <span class="d-sub">Alcoholvrij</span>
+            <span class="d-count" id="cnt-bier00">0</span>
+          </button>
+          <button class="drink-btn" onclick="tap('speciaal')">
+            <span class="d-icon">🍻</span><span class="d-name">Speciaal Bier</span>
+            <span class="d-count" id="cnt-speciaal">0</span>
+          </button>
+        </div>
+
+        <div class="sec-title">Wijn &amp; Bubbels</div>
+        <div class="drink-grid">
+          <button class="drink-btn" onclick="tap('wijn')">
+            <span class="d-icon">🍷</span><span class="d-name">Wijn</span>
+            <span class="d-count" id="cnt-wijn">0</span>
+          </button>
+          <button class="drink-btn" onclick="tap('prosecco')">
+            <span class="d-icon">🥂</span><span class="d-name">Prosecco</span>
+            <span class="d-count" id="cnt-prosecco">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Rechter kolom op iPad -->
+      <div class="drinks-col">
+        <div class="sec-title">Sterke Drank</div>
+        <div class="drink-grid">
+          <button class="drink-btn" onclick="tap('sterke')">
+            <span class="d-icon">🥃</span><span class="d-name">Sterke Drank</span>
+            <span class="d-sub">Indien afgesproken</span>
+            <span class="d-count" id="cnt-sterke">0</span>
+          </button>
+        </div>
+
+        <div class="sec-title">Hapjes &amp; Extra's</div>
+        <div class="drink-grid">
+          <button class="drink-btn" onclick="tap('nootjes')">
+            <span class="d-icon">🥜</span><span class="d-name">Nootjes / Zoutjes</span>
+            <span class="d-count" id="cnt-nootjes">0</span>
+          </button>
+          <button class="drink-btn" onclick="tap('koude')">
+            <span class="d-icon">🍽️</span><span class="d-name">Koude Hapjes</span>
+            <span class="d-sub">Ronde</span>
+            <span class="d-count" id="cnt-koude">0</span>
+          </button>
+          <button class="drink-btn" onclick="tap('bitter')">
+            <span class="d-icon">🫙</span><span class="d-name">Bittergarnituur</span>
+            <span class="d-sub">Ronde</span>
+            <span class="d-count" id="cnt-bitter">0</span>
+          </button>
+          <button class="drink-btn" onclick="tap('olijven')">
+            <span class="d-icon">🫒</span><span class="d-name">Olijven / Kaas</span>
+            <span class="d-count" id="cnt-olijven">0</span>
+          </button>
+          <button class="drink-btn" onclick="tap('endsnack')">
+            <span class="d-icon">🌮</span><span class="d-name">Eind Snack</span>
+            <span class="d-sub" id="endsnack-sub"></span>
+            <span class="d-count" id="cnt-endsnack">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Totalen en knoppen: volle breedte op iPad -->
+      <div class="totals-section">
+        <div class="undo-wrap">
+          <button class="undo-btn" onclick="undoLast()">↩ Ongedaan maken</button>
+        </div>
+        <div class="totals-card">
+          <div class="totals-inner" id="totalsRows"></div>
+        </div>
+        <div class="btn-row">
+          <button class="abtn mail" onclick="stuurEmail()">✉️ Stuur naar STOOM</button>
+        </div>
+        <div class="btn-row">
+          <button class="abtn pri" onclick="exportTxt()">📋 Download .txt</button>
+          <button class="abtn sec" onclick="resetAll()">↺ Reset</button>
+        </div>
+        <div class="mail-info">Verstuurd naar <span>info@stoom-apeldoorn.nl</span> · opent je e-mailapp</div>
+      </div>
     </div>
-    <div class="sec-title">Fris &amp; Bier</div>
-    <div class="drink-grid">
-      <button class="drink-btn" onclick="tap('fris')">
-        <span class="d-icon">🥤</span><span class="d-name">Frisdrank</span>
-        <span class="d-count" id="cnt-fris">0</span>
-      </button>
-      <button class="drink-btn" onclick="tap('bier')">
-        <span class="d-icon">🍺</span><span class="d-name">Bier</span>
-        <span class="d-count" id="cnt-bier">0</span>
-      </button>
-      <button class="drink-btn" onclick="tap('bier00')">
-        <span class="d-icon">🍺</span><span class="d-name">Bier 0.0</span>
-        <span class="d-sub">Alcoholvrij</span>
-        <span class="d-count" id="cnt-bier00">0</span>
-      </button>
-      <button class="drink-btn" onclick="tap('speciaal')">
-        <span class="d-icon">🍻</span><span class="d-name">Speciaal Bier</span>
-        <span class="d-count" id="cnt-speciaal">0</span>
-      </button>
-    </div>
-    <div class="sec-title">Wijn &amp; Bubbels</div>
-    <div class="drink-grid">
-      <button class="drink-btn" onclick="tap('wijn')">
-        <span class="d-icon">🍷</span><span class="d-name">Wijn</span>
-        <span class="d-count" id="cnt-wijn">0</span>
-      </button>
-      <button class="drink-btn" onclick="tap('prosecco')">
-        <span class="d-icon">🥂</span><span class="d-name">Prosecco</span>
-        <span class="d-count" id="cnt-prosecco">0</span>
-      </button>
-    </div>
-    <div class="sec-title">Sterke Drank</div>
-    <div class="drink-grid">
-      <button class="drink-btn" onclick="tap('sterke')">
-        <span class="d-icon">🥃</span><span class="d-name">Sterke Drank</span>
-        <span class="d-sub">Indien afgesproken</span>
-        <span class="d-count" id="cnt-sterke">0</span>
-      </button>
-    </div>
-    <div class="sec-title">Hapjes &amp; Extra's</div>
-    <div class="drink-grid">
-      <button class="drink-btn" onclick="tap('nootjes')">
-        <span class="d-icon">🥜</span><span class="d-name">Nootjes / Zoutjes</span>
-        <span class="d-count" id="cnt-nootjes">0</span>
-      </button>
-      <button class="drink-btn" onclick="tap('koude')">
-        <span class="d-icon">🍽️</span><span class="d-name">Koude Hapjes</span>
-        <span class="d-sub">Ronde</span>
-        <span class="d-count" id="cnt-koude">0</span>
-      </button>
-      <button class="drink-btn" onclick="tap('bitter')">
-        <span class="d-icon">🫙</span><span class="d-name">Bittergarnituur</span>
-        <span class="d-sub">Ronde</span>
-        <span class="d-count" id="cnt-bitter">0</span>
-      </button>
-      <button class="drink-btn" onclick="tap('olijven')">
-        <span class="d-icon">🫒</span><span class="d-name">Olijven / Kaas</span>
-        <span class="d-count" id="cnt-olijven">0</span>
-      </button>
-      <button class="drink-btn" onclick="tap('endsnack')">
-        <span class="d-icon">🌮</span><span class="d-name">Eind Snack</span>
-        <span class="d-sub" id="endsnack-sub"></span>
-        <span class="d-count" id="cnt-endsnack">0</span>
-      </button>
-    </div>
-    <div class="undo-wrap">
-      <button class="undo-btn" onclick="undoLast()">↩ Ongedaan maken</button>
-    </div>
-    <div class="totals-card"><div id="totalsRows"></div></div>
-    <div class="btn-row">
-      <button class="abtn mail" onclick="stuurEmail()">✉️ Stuur naar STOOM</button>
-    </div>
-    <div class="btn-row">
-      <button class="abtn pri" onclick="exportTxt()">📋 Download .txt</button>
-      <button class="abtn sec" onclick="resetAll()">↺ Reset</button>
-    </div>
-    <div class="mail-info">Verstuurd naar <span>info@stoom-apeldoorn.nl</span> · opent je e-mailapp</div>
   </div>
 
   <!-- AFSPRAKEN TAB -->
   <div class="tab-content" id="tab-afspraken">
-    <div class="sec-title" style="margin-top:0;">Overzicht afspraken</div>
-    <div class="af-summary" id="af-summary"></div>
+    <div class="af-summary-section">
+      <div class="sec-title" style="margin-top:0;">Overzicht afspraken</div>
+      <div class="af-summary" id="af-summary"></div>
+    </div>
 
     <div class="sec-title">Afspraken bewerken</div>
-    <div class="af-card">
-      <div class="af-row">
-        <div class="af-label"><strong>🥂 Prosecco welkomst</strong><small>Welkomstdrankje bij aankomst</small></div>
-        <button class="toggle" id="tog-prosecco" onclick="toggleAf('prosecco')"></button>
-      </div>
-      <div class="af-row">
-        <div class="af-label"><strong>🥜 Nootjes / Zoutjes</strong><small>Op tafel bij aanvang</small></div>
-        <button class="toggle" id="tog-nootjes" onclick="toggleAf('nootjes')"></button>
-      </div>
-      <div class="af-row">
-        <div class="af-label"><strong>🫒 Olijven / Kaas</strong><small>Potjes op tafel</small></div>
-        <button class="toggle" id="tog-olijven" onclick="toggleAf('olijven')"></button>
-      </div>
-    </div>
+    <div class="af-layout">
+      <div>
+        <div class="af-card">
+          <div class="af-row">
+            <div class="af-label"><strong>🥂 Prosecco welkomst</strong><small>Welkomstdrankje bij aankomst</small></div>
+            <button class="toggle" id="tog-prosecco" onclick="toggleAf('prosecco')"></button>
+          </div>
+          <div class="af-row">
+            <div class="af-label"><strong>🥜 Nootjes / Zoutjes</strong><small>Op tafel bij aanvang</small></div>
+            <button class="toggle" id="tog-nootjes" onclick="toggleAf('nootjes')"></button>
+          </div>
+          <div class="af-row">
+            <div class="af-label"><strong>🫒 Olijven / Kaas</strong><small>Potjes op tafel</small></div>
+            <button class="toggle" id="tog-olijven" onclick="toggleAf('olijven')"></button>
+          </div>
+        </div>
 
-    <div class="af-card">
-      <div class="af-row">
-        <div class="af-label"><strong>🫙 Bittergarnituur</strong><small>Aantal rondes</small></div>
-        <div class="stepper">
-          <button class="step-btn" onclick="stepAf('bitter',-1)">−</button>
-          <span class="step-val" id="step-bitter">0</span>
-          <button class="step-btn" onclick="stepAf('bitter',1)">+</button>
+        <div class="af-card">
+          <div class="af-row">
+            <div class="af-label"><strong>🫙 Bittergarnituur</strong><small>Aantal rondes</small></div>
+            <div class="stepper">
+              <button class="step-btn" onclick="stepAf('bitter',-1)">−</button>
+              <span class="step-val" id="step-bitter">0</span>
+              <button class="step-btn" onclick="stepAf('bitter',1)">+</button>
+            </div>
+          </div>
+          <div class="af-row">
+            <div class="af-label"><strong>🍽️ Koude luxe hapjes</strong><small>Aantal rondes</small></div>
+            <div class="stepper">
+              <button class="step-btn" onclick="stepAf('koude',-1)">−</button>
+              <span class="step-val" id="step-koude">0</span>
+              <button class="step-btn" onclick="stepAf('koude',1)">+</button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="af-row">
-        <div class="af-label"><strong>🍽️ Koude luxe hapjes</strong><small>Aantal rondes</small></div>
-        <div class="stepper">
-          <button class="step-btn" onclick="stepAf('koude',-1)">−</button>
-          <span class="step-val" id="step-koude">0</span>
-          <button class="step-btn" onclick="stepAf('koude',1)">+</button>
+
+      <div>
+        <div class="af-card">
+          <div class="af-row" style="flex-direction:column;align-items:flex-start;gap:10px;">
+            <div style="display:flex;width:100%;align-items:center;gap:14px;">
+              <div class="af-label"><strong>🌮 Eindsnack</strong><small>Omschrijving eindsnack</small></div>
+              <button class="toggle" id="tog-eindsnack" onclick="toggleAf('eindsnack')"></button>
+            </div>
+            <input class="af-snack-input" id="eindsnack-omschrijving" type="text" placeholder="Bijv. bitterballen, broodjes pulled pork..." oninput="updateSummary()" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="af-card">
+          <div class="af-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
+            <div class="af-label"><strong>📝 Overige notities</strong><small>Allergieën, dieetwensen, bijzonderheden</small></div>
+            <textarea class="af-notitie" id="notities" placeholder="Vrij tekstveld voor overige afspraken..." oninput="updateSummary()"></textarea>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="af-card">
-      <div class="af-row" style="flex-direction:column;align-items:flex-start;gap:10px;">
-        <div style="display:flex;width:100%;align-items:center;gap:12px;">
-          <div class="af-label"><strong>🌮 Eindsnack</strong><small>Omschrijving eindsnack</small></div>
-          <button class="toggle" id="tog-eindsnack" onclick="toggleAf('eindsnack')"></button>
+      <div class="af-actions">
+        <div class="btn-row">
+          <button class="abtn mail" onclick="stuurEmailAfspraken()">✉️ Afspraken mailen</button>
         </div>
-        <input class="af-snack-input" id="eindsnack-omschrijving" type="text" placeholder="Bijv. bitterballen, broodjes pulled pork..." oninput="updateSummary()" autocomplete="off" />
+        <div class="mail-info">Stuurt afspraken naar <span>info@stoom-apeldoorn.nl</span></div>
       </div>
     </div>
-
-    <div class="af-card">
-      <div class="af-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
-        <div class="af-label"><strong>📝 Overige notities</strong><small>Allergieën, dieetwensen, bijzonderheden</small></div>
-        <textarea class="af-notitie" id="notities" placeholder="Vrij tekstveld voor overige afspraken..." oninput="updateSummary()"></textarea>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="abtn mail" onclick="stuurEmailAfspraken()">✉️ Afspraken mailen</button>
-    </div>
-    <div class="mail-info">Stuurt afspraken naar <span>info@stoom-apeldoorn.nl</span></div>
   </div>
 
   <!-- CHECKLIST TAB -->
   <div class="tab-content" id="tab-checklist">
-    <div id="checklistContainer"></div>
-    <div class="btn-row">
+    <div class="checklist-grid" id="checklistContainer"></div>
+    <div class="btn-row" style="margin-top:16px;">
       <button class="abtn mail" onclick="stuurEmailChecklist()">✉️ Checklist mailen</button>
       <button class="abtn sec" onclick="resetChecklist()">↺ Reset</button>
     </div>
@@ -325,7 +403,7 @@ function updateTotals(){
     }
   });
   if(total>0)html+=`<div class="trow grand"><span class="lbl">Totaal</span><span class="val">${total}</span></div>`;
-  else html='<div style="color:#3a5a75;font-size:13px;text-align:center;padding:8px 0;">Nog niets geregistreerd</div>';
+  else html='<div style="color:#3a5a75;font-size:14px;text-align:center;padding:10px 0;">Nog niets geregistreerd</div>';
   rows.innerHTML=html;
 }
 
@@ -362,7 +440,7 @@ function updateSummary(){
   if(notities)rows.push({lbl:'📝 Notities',val:notities,on:true});
   let html='';
   rows.forEach(r=>{html+=`<div class="af-sum-row"><span class="af-sum-lbl">${r.lbl}</span><span class="af-sum-val ${r.on?'on':'off'}">${r.val}</span></div>`;});
-  document.getElementById('af-summary').innerHTML=html||'<div style="color:#3a5a75;font-size:13px;">Nog geen afspraken ingesteld</div>';
+  document.getElementById('af-summary').innerHTML=html||'<div style="color:#3a5a75;font-size:14px;">Nog geen afspraken ingesteld</div>';
 }
 
 function buildEmailBody(){
