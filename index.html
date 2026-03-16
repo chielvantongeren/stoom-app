@@ -54,12 +54,12 @@ html,body{height:100%;background:#0f2233;}
 }
 
 /* DRINK BUTTONS */
-.drink-btn{background:#162d42;border:1px solid #2a4a65;border-radius:12px;padding:18px 10px;cursor:pointer;text-align:center;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;gap:7px;-webkit-user-select:none;user-select:none;width:100%;}
+.drink-btn{background:#162d42;border:1px solid #2a4a65;border-radius:12px;padding:0;cursor:pointer;text-align:center;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;-webkit-user-select:none;user-select:none;width:100%;height:110px;}
 .drink-btn:active{transform:scale(0.95);background:#1e3d58;border-color:#e8a020;}
-.d-icon{font-size:28px;line-height:1;}
-.d-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;color:#fff;text-transform:uppercase;}
+.d-icon{font-size:26px;line-height:1;}
+.d-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;color:#fff;text-transform:uppercase;line-height:1.2;padding:0 6px;}
 .d-count{background:#e8a020;color:#0a1a28;border-radius:20px;padding:4px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;min-width:44px;display:inline-block;}
-.d-sub{font-size:11px;color:#5a7a95;letter-spacing:0.5px;}
+.d-sub{display:none;}
 .drink-btn.lit{border-color:#e8a020;background:#1e3d58;}
 
 /* BUTTONS */
@@ -169,27 +169,26 @@ html,body{height:100%;background:#0f2233;}
     <div class="drinks-layout">
       <!-- Linker kolom op iPad -->
       <div class="drinks-col">
-        <div class="sec-title">Warme dranken</div>
+        <div class="sec-title">Warme dranken &amp; Fris</div>
         <div class="drink-grid">
           <button class="drink-btn" onclick="tap('koffie')">
             <span class="d-icon">☕</span><span class="d-name">Koffie / Thee</span>
             <span class="d-count" id="cnt-koffie">0</span>
           </button>
-        </div>
-
-        <div class="sec-title">Fris &amp; Bier</div>
-        <div class="drink-grid">
           <button class="drink-btn" onclick="tap('fris')">
             <span class="d-icon">🥤</span><span class="d-name">Frisdrank</span>
             <span class="d-count" id="cnt-fris">0</span>
           </button>
+        </div>
+
+        <div class="sec-title">Bier</div>
+        <div class="drink-grid">
           <button class="drink-btn" onclick="tap('bier')">
             <span class="d-icon">🍺</span><span class="d-name">Bier</span>
             <span class="d-count" id="cnt-bier">0</span>
           </button>
           <button class="drink-btn" onclick="tap('bier00')">
             <span class="d-icon">🍺</span><span class="d-name">Bier 0.0</span>
-            <span class="d-sub">Alcoholvrij</span>
             <span class="d-count" id="cnt-bier00">0</span>
           </button>
           <button class="drink-btn" onclick="tap('speciaal')">
@@ -198,7 +197,6 @@ html,body{height:100%;background:#0f2233;}
           </button>
           <button class="drink-btn" onclick="tap('speciaal00')">
             <span class="d-icon">🍻</span><span class="d-name">Speciaal Bier 0.0</span>
-            <span class="d-sub">Alcoholvrij</span>
             <span class="d-count" id="cnt-speciaal00">0</span>
           </button>
         </div>
@@ -222,35 +220,7 @@ html,body{height:100%;background:#0f2233;}
         <div class="drink-grid">
           <button class="drink-btn" onclick="tap('sterke')">
             <span class="d-icon">🥃</span><span class="d-name">Sterke Drank</span>
-            <span class="d-sub">Indien afgesproken</span>
             <span class="d-count" id="cnt-sterke">0</span>
-          </button>
-        </div>
-
-        <div class="sec-title">Hapjes &amp; Extra's</div>
-        <div class="drink-grid">
-          <button class="drink-btn" onclick="tap('nootjes')">
-            <span class="d-icon">🥜</span><span class="d-name">Nootjes / Zoutjes</span>
-            <span class="d-count" id="cnt-nootjes">0</span>
-          </button>
-          <button class="drink-btn" onclick="tap('koude')">
-            <span class="d-icon">🍽️</span><span class="d-name">Koude Hapjes</span>
-            <span class="d-sub">Ronde</span>
-            <span class="d-count" id="cnt-koude">0</span>
-          </button>
-          <button class="drink-btn" onclick="tap('bitter')">
-            <span class="d-icon">🫙</span><span class="d-name">Bittergarnituur</span>
-            <span class="d-sub">Ronde</span>
-            <span class="d-count" id="cnt-bitter">0</span>
-          </button>
-          <button class="drink-btn" onclick="tap('olijven')">
-            <span class="d-icon">🫒</span><span class="d-name">Olijven / Kaas</span>
-            <span class="d-count" id="cnt-olijven">0</span>
-          </button>
-          <button class="drink-btn" onclick="tap('endsnack')">
-            <span class="d-icon">🌮</span><span class="d-name">Eind Snack</span>
-            <span class="d-sub" id="endsnack-sub"></span>
-            <span class="d-count" id="cnt-endsnack">0</span>
           </button>
         </div>
       </div>
