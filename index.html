@@ -48,17 +48,21 @@ html,body{height:100%;background:#0f2233;}
 .sec-title:first-child{margin-top:0;}
 
 /* DRINK GRID */
-.drink-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:4px;}
+.drink-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:4px;}
 @media (min-width:700px){
-  .drink-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+  .drink-grid{grid-template-columns:repeat(4,1fr);gap:14px;}
 }
 
 /* DRINK BUTTONS */
-.drink-btn{background:#162d42;border:1px solid #2a4a65;border-radius:12px;padding:0;cursor:pointer;text-align:center;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;-webkit-user-select:none;user-select:none;width:100%;height:110px;}
+.drink-btn{background:#162d42;border:1px solid #2a4a65;border-radius:14px;padding:0;cursor:pointer;text-align:center;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;-webkit-user-select:none;user-select:none;width:100%;height:130px;}
+@media (min-width:700px){.drink-btn{height:150px;}}
 .drink-btn:active{transform:scale(0.95);background:#1e3d58;border-color:#e8a020;}
-.d-icon{font-size:26px;line-height:1;}
-.d-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;color:#fff;text-transform:uppercase;line-height:1.2;padding:0 6px;}
-.d-count{background:#e8a020;color:#0a1a28;border-radius:20px;padding:4px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;min-width:44px;display:inline-block;}
+.d-icon{font-size:32px;line-height:1;}
+@media (min-width:700px){.d-icon{font-size:38px;}}
+.d-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;color:#fff;text-transform:uppercase;line-height:1.2;padding:0 8px;}
+@media (min-width:700px){.d-name{font-size:17px;}}
+.d-count{background:#e8a020;color:#0a1a28;border-radius:20px;padding:4px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:24px;min-width:48px;display:inline-block;}
+@media (min-width:700px){.d-count{font-size:28px;min-width:54px;}}
 .d-sub{display:none;}
 .drink-btn.lit{border-color:#e8a020;background:#1e3d58;}
 
@@ -155,7 +159,9 @@ html,body{height:100%;background:#0f2233;}
 
   <div class="session-bar">
     <input type="text" id="klant" placeholder="Klantnaam / evenement..." autocomplete="off" />
-    <input type="number" id="pers" placeholder="Pers." min="1" style="max-width:80px;" />
+    <input type="number" id="pers" placeholder="Pers." min="1" style="max-width:70px;" />
+    <input type="date" id="datum" style="max-width:160px;color-scheme:dark;" />
+    <input type="time" id="starttijd" style="max-width:110px;color-scheme:dark;" />
   </div>
 
   <div class="tab-bar">
@@ -167,9 +173,9 @@ html,body{height:100%;background:#0f2233;}
   <!-- DRINKS TAB -->
   <div class="tab-content active" id="tab-drinks">
     <div class="drinks-layout">
-      <!-- Linker kolom op iPad -->
-      <div class="drinks-col">
-        <div class="sec-title">Warme dranken &amp; Fris</div>
+
+      <div class="totals-section">
+        <div class="sec-title" style="margin-top:0;">Warme dranken &amp; Fris</div>
         <div class="drink-grid">
           <button class="drink-btn" onclick="tap('koffie')">
             <span class="d-icon">☕</span><span class="d-name">Koffie / Thee</span>
@@ -201,7 +207,7 @@ html,body{height:100%;background:#0f2233;}
           </button>
         </div>
 
-        <div class="sec-title">Wijn &amp; Bubbels</div>
+        <div class="sec-title">Wijn, Bubbels &amp; Sterke Drank</div>
         <div class="drink-grid">
           <button class="drink-btn" onclick="tap('wijn')">
             <span class="d-icon">🍷</span><span class="d-name">Wijn</span>
@@ -211,22 +217,11 @@ html,body{height:100%;background:#0f2233;}
             <span class="d-icon">🥂</span><span class="d-name">Prosecco</span>
             <span class="d-count" id="cnt-prosecco">0</span>
           </button>
-        </div>
-      </div>
-
-      <!-- Rechter kolom op iPad -->
-      <div class="drinks-col">
-        <div class="sec-title">Sterke Drank</div>
-        <div class="drink-grid">
           <button class="drink-btn" onclick="tap('sterke')">
             <span class="d-icon">🥃</span><span class="d-name">Sterke Drank</span>
             <span class="d-count" id="cnt-sterke">0</span>
           </button>
         </div>
-      </div>
-
-      <!-- Totalen en knoppen: volle breedte op iPad -->
-      <div class="totals-section">
         <div class="undo-wrap">
           <button class="undo-btn" onclick="undoLast()">↩ Ongedaan maken</button>
         </div>
@@ -424,9 +419,10 @@ function buildEmailBody(){
   const pers=document.getElementById('pers').value||'?';
   const eindOmschr=document.getElementById('eindsnack-omschrijving').value;
   const notities=document.getElementById('notities').value;
-  const now=new Date();
-  const datum=now.toLocaleDateString('nl-NL');
-  const tijd=now.toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'});
+  const datumVal=document.getElementById('datum').value;
+  const tijdVal=document.getElementById('starttijd').value;
+  const datum=datumVal?new Date(datumVal).toLocaleDateString('nl-NL'):new Date().toLocaleDateString('nl-NL');
+  const tijd=tijdVal||new Date().toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'});
   let body=`STOOM APELDOORN - VERBRUIKSOVERZICHT\n====================================\n`;
   body+=`Klant: ${klant}\nPersonen: ${pers}\nDatum: ${datum}  Tijd: ${tijd}\n`;
   body+=`\n--- AFSPRAKEN ---\n`;
@@ -456,8 +452,10 @@ function stuurEmailAfspraken(){
   const klant=document.getElementById('klant').value||'Niet opgegeven';
   const eindOmschr=document.getElementById('eindsnack-omschrijving').value;
   const notities=document.getElementById('notities').value;
-  const now=new Date();
-  const datum=now.toLocaleDateString('nl-NL');
+  const datumVal2=document.getElementById('datum').value;
+  const tijdVal2=document.getElementById('starttijd').value;
+  const datum=datumVal2?new Date(datumVal2).toLocaleDateString('nl-NL'):new Date().toLocaleDateString('nl-NL');
+  const tijd=tijdVal2||'';
   let body=`STOOM APELDOORN - AFSPRAKEN\n====================================\n`;
   body+=`Klant: ${klant}  Datum: ${datum}\n\n`;
   body+=`Prosecco welkomst: ${af.prosecco?'Ja':'Nee'}\n`;
@@ -548,9 +546,10 @@ function updateAllProg(){Object.keys(checklist).forEach(s=>updateSectionProg(s))
 
 function stuurEmailChecklist(){
   const klant=document.getElementById('klant').value||'Niet opgegeven';
-  const now=new Date();
-  const datum=now.toLocaleDateString('nl-NL');
-  const tijd=now.toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'});
+  const datumVal3=document.getElementById('datum').value;
+  const tijdVal3=document.getElementById('starttijd').value;
+  const datum=datumVal3?new Date(datumVal3).toLocaleDateString('nl-NL'):new Date().toLocaleDateString('nl-NL');
+  const tijd=tijdVal3||new Date().toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'});
   let body=`STOOM APELDOORN - CHECKLIST STATUS\n====================================\n`;
   body+=`Klant: ${klant}  Datum: ${datum}  Tijd: ${tijd}\n`;
   Object.keys(checklist).forEach(section=>{
@@ -576,6 +575,16 @@ function resetChecklist(){
 
 document.getElementById('eindsnack-omschrijving').disabled=true;
 document.getElementById('eindsnack-omschrijving').style.opacity='0.4';
+// Auto-fill datum en tijd
+const now = new Date();
+const y = now.getFullYear();
+const m = String(now.getMonth()+1).padStart(2,'0');
+const d = String(now.getDate()).padStart(2,'0');
+const hh = String(now.getHours()).padStart(2,'0');
+const mm = String(now.getMinutes()).padStart(2,'0');
+document.getElementById('datum').value = y+'-'+m+'-'+d;
+document.getElementById('starttijd').value = hh+':'+mm;
+
 updateTotals();updateSummary();buildChecklist();
 </script>
 </body>
