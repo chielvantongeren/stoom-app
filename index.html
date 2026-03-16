@@ -25,6 +25,10 @@ html,body{height:100%;background:#0f2233;}
 .session-bar{background:#162d42;padding:10px 24px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #1e3d58;flex-wrap:wrap;}
 .session-bar input{background:#0f2233;border:1px solid #2a4a65;color:#fff;border-radius:6px;padding:8px 12px;font-size:14px;font-family:'Barlow',sans-serif;flex:1;min-width:120px;}
 .session-bar input::placeholder{color:#5a7a95;}
+.time-group{display:flex;gap:8px;align-items:center;flex-wrap:nowrap;}
+.time-field{display:flex;flex-direction:column;gap:2px;}
+.time-lbl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#5a7a95;font-family:'Barlow Condensed',sans-serif;font-weight:600;padding-left:2px;}
+.time-field input{width:100px;color-scheme:dark;}
 
 /* TAB BAR */
 .tab-bar{display:flex;background:#0a1a28;border-bottom:1px solid #1e3d58;}
@@ -161,7 +165,16 @@ html,body{height:100%;background:#0f2233;}
     <input type="text" id="klant" placeholder="Klantnaam / evenement..." autocomplete="off" />
     <input type="number" id="pers" placeholder="Pers." min="1" style="max-width:70px;" />
     <input type="date" id="datum" style="max-width:160px;color-scheme:dark;" />
-    <input type="time" id="starttijd" style="max-width:110px;color-scheme:dark;" />
+    <div class="time-group">
+      <div class="time-field">
+        <span class="time-lbl">Start</span>
+        <input type="time" id="starttijd" style="color-scheme:dark;" />
+      </div>
+      <div class="time-field">
+        <span class="time-lbl">Eind</span>
+        <input type="time" id="eindtijd" style="color-scheme:dark;" />
+      </div>
+    </div>
   </div>
 
   <div class="tab-bar">
@@ -421,10 +434,12 @@ function buildEmailBody(){
   const notities=document.getElementById('notities').value;
   const datumVal=document.getElementById('datum').value;
   const tijdVal=document.getElementById('starttijd').value;
+  const eindtijdVal=document.getElementById('eindtijd').value;
   const datum=datumVal?new Date(datumVal).toLocaleDateString('nl-NL'):new Date().toLocaleDateString('nl-NL');
   const tijd=tijdVal||new Date().toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'});
+  const eindtijd=eindtijdVal||'-';
   let body=`STOOM APELDOORN - VERBRUIKSOVERZICHT\n====================================\n`;
-  body+=`Klant: ${klant}\nPersonen: ${pers}\nDatum: ${datum}  Tijd: ${tijd}\n`;
+  body+=`Klant: ${klant}\nPersonen: ${pers}\nDatum: ${datum}  Start: ${tijd}  Eind: ${eindtijd}\n`;
   body+=`\n--- AFSPRAKEN ---\n`;
   body+=`Prosecco welkomst: ${af.prosecco?'Ja':'Nee'}\n`;
   body+=`Nootjes / Zoutjes: ${af.nootjes?'Ja':'Nee'}\n`;
@@ -454,10 +469,12 @@ function stuurEmailAfspraken(){
   const notities=document.getElementById('notities').value;
   const datumVal2=document.getElementById('datum').value;
   const tijdVal2=document.getElementById('starttijd').value;
+  const eindtijdVal2=document.getElementById('eindtijd').value;
   const datum=datumVal2?new Date(datumVal2).toLocaleDateString('nl-NL'):new Date().toLocaleDateString('nl-NL');
   const tijd=tijdVal2||'';
+  const eindtijd2=eindtijdVal2||'-';
   let body=`STOOM APELDOORN - AFSPRAKEN\n====================================\n`;
-  body+=`Klant: ${klant}  Datum: ${datum}\n\n`;
+  body+=`Klant: ${klant}  Datum: ${datum}  Start: ${tijd}  Eind: ${eindtijd2}\n\n`;
   body+=`Prosecco welkomst: ${af.prosecco?'Ja':'Nee'}\n`;
   body+=`Nootjes / Zoutjes: ${af.nootjes?'Ja':'Nee'}\n`;
   body+=`Olijven / Kaas: ${af.olijven?'Ja':'Nee'}\n`;
@@ -548,10 +565,12 @@ function stuurEmailChecklist(){
   const klant=document.getElementById('klant').value||'Niet opgegeven';
   const datumVal3=document.getElementById('datum').value;
   const tijdVal3=document.getElementById('starttijd').value;
+  const eindtijdVal3=document.getElementById('eindtijd').value;
   const datum=datumVal3?new Date(datumVal3).toLocaleDateString('nl-NL'):new Date().toLocaleDateString('nl-NL');
   const tijd=tijdVal3||new Date().toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'});
+  const eindtijd3=eindtijdVal3||'-';
   let body=`STOOM APELDOORN - CHECKLIST STATUS\n====================================\n`;
-  body+=`Klant: ${klant}  Datum: ${datum}  Tijd: ${tijd}\n`;
+  body+=`Klant: ${klant}  Datum: ${datum}  Start: ${tijd}  Eind: ${eindtijd3}\n`;
   Object.keys(checklist).forEach(section=>{
     const sKey=section.replace(/\W+/g,'_');
     body+=`\n${section.toUpperCase()}\n`;
